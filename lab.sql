@@ -28,7 +28,13 @@
 	ORDER BY city ASC;
 -- 2.3 INSERT INTO
 -- Task – Insert two new records into Genre table
+    INSERT INTO genre (genreid,name)
+	VALUES( 26,'New Retro Wave'),
+			(27,'Uneasy listening');
 -- Task – Insert two new records into Employee table
+    INSERT INTO employee (employeeid, lastname, firstname, title, birthdate, hiredate, address, city, state, country, postalcode, phone, fax, email)
+	VALUES ( 9,'Wayne', 'Bruce', 'IT Staff', '1939-05-30', '2019-04-10', '1007 Mountain Drive', 'Gotham', 'NY', 'United States', '53540', '+1(212)555-6342', '+1(212)555-6390', 'bruce@chinookcorp.com' ),
+			(10, 'Clark', 'Kent', 'Sales Support Agent', '1938-04-18', '2019-04-10', '1938 Sullivan Lane', 'Metropolis', 'NY', 'United States', '62960', '+1(412)555-1938', '+1(412)555-1993', 'clark@chinookcorp.com');
 -- Task – Insert two new records into Customer table
 -- 2.4 UPDATE
 -- Task – Update Aaron Mitchell in Customer table to Robert Walter
