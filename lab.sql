@@ -9,13 +9,23 @@
 -- database.
 -- 2.1 SELECT
 -- Task – Select all records from the Employee table.
+    SELECT * FROM employee;
 -- Task – Select all records from the Employee table where last name is King.
+    SELECT * FROM employee
+	WHERE lastname = 'King';
 -- Task – Select all records from the Employee table where first name is Andrew and 
 -- REPORTSTO is NULL.
+    SELECT * FROM employee
+	WHERE firstname = 'Andrew' AND
+	reportsto ISNULL;
 -- 2.2 ORDER BY
 -- Task – Select all albums in Album table and sort result set in descending order by 
 -- title.
+    SELECT * FROM album
+	ORDER BY title DESC;
 -- Task – Select first name from Customer and sort result set in ascending order by city
+    SELECT firstname FROM customer
+	ORDER BY city ASC;
 -- 2.3 INSERT INTO
 -- Task – Insert two new records into Genre table
 -- Task – Insert two new records into Employee table
