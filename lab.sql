@@ -79,6 +79,7 @@ DELETE FROM customer
 -- functions, to perform various actions against the database
 -- 3.1 System Defined Functions
 -- Task – Use a function that returns the current time.
+    SELECT CURRENT_TIMESTAMP;
 -- Task – Use a function that returns the length of a mediatype from the mediatype 
 -- table
 -- 3.2 System Defined Aggregate Functions
