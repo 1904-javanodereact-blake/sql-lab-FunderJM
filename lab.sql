@@ -32,9 +32,9 @@
 	VALUES( 26,'New Retro Wave'),
 			(27,'Uneasy listening');
 -- Task – Insert two new records into Employee table
-    INSERT INTO employee (employeeid, lastname, firstname, title, birthdate, hiredate, address, city, state, country, postalcode, phone, fax, email)
-	VALUES ( 9,'Wayne', 'Bruce', 'IT Staff', '1939-05-30', '2019-04-10', '1007 Mountain Drive', 'Gotham', 'NY', 'United States', '53540', '+1(212)555-6342', '+1(212)555-6390', 'bruce@chinookcorp.com' ),
-			(10, 'Clark', 'Kent', 'Sales Support Agent', '1938-04-18', '2019-04-10', '1938 Sullivan Lane', 'Metropolis', 'NY', 'United States', '62960', '+1(412)555-1938', '+1(412)555-1993', 'clark@chinookcorp.com');
+    INSERT INTO employee (employeeid, lastname, firstname, title, reportsto, birthdate, hiredate, address, city, state, country, postalcode, phone, fax, email)
+	VALUES ( 9,'Wayne', 'Bruce', 'IT Staff', 1, '1939-05-30', '2019-04-10', '1007 Mountain Drive', 'Gotham', 'NY', 'United States', '53540', '+1(212)555-6342', '+1(212)555-6390', 'bruce@chinookcorp.com' ),
+			(10, 'Clark', 'Kent', 'Sales Support Agent', 2, '1938-04-18', '2019-04-10', '1938 Sullivan Lane', 'Metropolis', 'NY', 'United States', '62960', '+1(412)555-1938', '+1(412)555-1993', 'clark@chinookcorp.com');
 -- Task – Insert two new records into Customer table
     INSERT INTO customer (customerid, firstname, lastname, address, city, country, postalcode, phone, email)
 	VALUES ( 60,'Alexander', 'Delarge', '655321 Cellblock Road', 'London', 'United Kingdom', 'N1 5LH', '+44 020 8231 0707', 'orange@gmail.com' ),
@@ -69,10 +69,15 @@
 -- Task – Delete a record in Customer table where the name is Robert Walter (There 
 -- may be constraints that rely on this, find out how to resolve them).
     ALTER TABLE invoice
-	DROP CONSTRAINT fk_invoicecustomerid;
+   DROP CONSTRAINT fk_invoicecustomerit;
+
+ALTER TABLE invoice
+   ADD CONSTRAINT fk_invoicecustomerid
+   FOREIGN KEY (customerid) REFERENCES customer(customerid) ON DELETE CASCADE;
 
 DELETE FROM customer
-	WHERE firstname = 'Robert' AND lastname = 'Walter'; 
+	WHERE firstname = 'Robert' AND lastname = 'Walter';
+	-- Should have used a cascading delete 
 -- 3.0
 -- SQL Functions
 -- In this section you will be using the Oracle system functions, as well as your own 
@@ -82,6 +87,8 @@ DELETE FROM customer
     SELECT CURRENT_TIMESTAMP;
 -- Task – Use a function that returns the length of a mediatype from the mediatype 
 -- table
+	SELECT LENGTH(name) FROM mediatype
+	WHERE mediatypeid = 4;
 -- 3.2 System Defined Aggregate Functions
 -- Task – Use a function that returns the average total of all invoices
 -- Task – Use a function that returns the most expensive track
