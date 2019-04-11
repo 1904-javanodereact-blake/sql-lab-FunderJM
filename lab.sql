@@ -41,8 +41,14 @@
 			( 61, 'John', 'Savage', '1932 World Drive', 'Metropolis', 'United States', '62960', '+1(412)555-4242', 'savagenew@hotmail.com');
 -- 2.4 UPDATE
 -- Task – Update Aaron Mitchell in Customer table to Robert Walter
+    UPDATE customer
+	SET firstname = 'Robert', lastname = 'Walter'
+	Where firstname = 'Aaron' AND lastname = 'Mitchell';
 -- Task – Update name of artist in the Artist table “Creedence Clearwater Revival” to 
 -- “CCR”
+    UPDATE artist
+	SET name = 'ccr'
+	WHERE name = 'Creedence Clearwater Revival';
 -- 2.5 LIKE
 -- Task – Select all invoices with a billing address like “T%”
 -- 2.6 BETWEEN
