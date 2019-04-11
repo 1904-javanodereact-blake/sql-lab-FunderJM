@@ -51,17 +51,28 @@
 	WHERE name = 'Creedence Clearwater Revival';
 -- 2.5 LIKE
 -- Task – Select all invoices with a billing address like “T%”
+    SELECT * FROM invoice
+	WHERE billingaddress LIKE 'T%';
 -- 2.6 BETWEEN
 -- Task – Select all invoices that have a total between 15 and 50
+    SELECT * FROM invoice
+	WHERE total BETWEEN 15 AND 50;
 -- Task – Select all employees hired between 1
 -- st
 --  of June 2003 and 1
 -- st
 --  of March 2004
 -- 1
+    SELECT * FROM employee
+	WHERE hiredate BETWEEN '2003-06-01' AND '2004-03-01';
 -- 2.7 DELETE
 -- Task – Delete a record in Customer table where the name is Robert Walter (There 
 -- may be constraints that rely on this, find out how to resolve them).
+    ALTER TABLE invoice
+	DROP CONSTRAINT fk_invoicecustomerid;
+
+DELETE FROM customer
+	WHERE firstname = 'Robert' AND lastname = 'Walter'; 
 -- 3.0
 -- SQL Functions
 -- In this section you will be using the Oracle system functions, as well as your own 
