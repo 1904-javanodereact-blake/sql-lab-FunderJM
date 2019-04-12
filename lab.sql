@@ -16,8 +16,7 @@
 -- Task – Select all records from the Employee table where first name is Andrew and 
 -- REPORTSTO is NULL.
     SELECT * FROM employee
-	WHERE firstname = 'Andrew' AND
-	reportsto ISNULL;
+	WHERE firstname = 'Andrew' AND reportsto ISNULL;
 -- 2.2 ORDER BY
 -- Task – Select all albums in Album table and sort result set in descending order by 
 -- title.
@@ -68,16 +67,15 @@
 -- 2.7 DELETE
 -- Task – Delete a record in Customer table where the name is Robert Walter (There 
 -- may be constraints that rely on this, find out how to resolve them).
-    ALTER TABLE invoice
-   DROP CONSTRAINT fk_invoicecustomerit;
-
-ALTER TABLE invoice
-   ADD CONSTRAINT fk_invoicecustomerid
-   FOREIGN KEY (customerid) REFERENCES customer(customerid) ON DELETE CASCADE;
+    DELETE FROM invoiceline
+	WHERE invoiceid = 50, 61, 116,245, 268, 342;
+	--performed separately fo each number in the list.
+	
+DELETE FROM invoice
+	WHERE customerid = 32;
 
 DELETE FROM customer
 	WHERE firstname = 'Robert' AND lastname = 'Walter';
-	-- Should have used a cascading delete 
 -- 3.0
 -- SQL Functions
 -- In this section you will be using the Oracle system functions, as well as your own 
@@ -91,21 +89,40 @@ DELETE FROM customer
 	WHERE mediatypeid = 4;
 -- 3.2 System Defined Aggregate Functions
 -- Task – Use a function that returns the average total of all invoices
+	SELECT CAST (AVG(total) AS DECIMAL(10,2)) from invoice;
 -- Task – Use a function that returns the most expensive track
+	SELECT MAX(unitprice) FROM track;
 -- 7.0 JOINS
 -- In this section you will be working with combing various tables through the use of 
 -- joins. You will work with outer, inner, right, left, cross, and self joins.
 -- 7.1 INNER
 -- Task – Create an inner join that joins customers and orders and specifies the name 
 -- of the customer and the invoiceId.
+	SELECT customer.firstname, customer.lastname, invoice.invoiceid FROM customer
+INNER JOIN
+invoice ON customer.customerid = invoice.customerid;
 -- 7.2 OUTER
 -- Task – Create an outer join that joins the customer and invoice table, specifying the 
 -- CustomerId, firstname, lastname, invoiceId, and total.
+	SELECT customer.customerid, customer.firstname, customer.lastname, invoice.invoiceid, invoice.total FROM customer
+FULL OUTER JOIN
+invoice ON customer.customerid = invoice.customerid
+ORDER BY customer.customerid;
 -- 7.3 RIGHT
 -- Task – Create a right join that joins album and artist specifying artist name and title.
+	SELECT artist.name, album.title FROM album
+RIGHT JOIN
+artist ON album.artistid = artist.artistid;
 -- 7.4 CROSS
 -- Task – Create a cross join that joins album and artist and sorts by artist name in 
 -- ascending order.
+	SELECT artist.name, album.title FROM album
+CROSS JOIN
+artist ORDER BY artist.name ASC;
 -- 7.5 SELF
 -- Task – Perform a self-join on the employee table, joining on the reportsto column.
+SELECT * FROM employee E1, employee E2
+	WHERE e1.employeeid <> e2.employeeid
+	AND e1.reportsto = e2.reportsto
+	ORDER BY e1.lastname;
 -- 2
